@@ -1,32 +1,26 @@
+mod rectangle_area_calculator;
+mod fibonacci;
+mod degree_converter;
+
 use std::io;
+use crate::{rectangle_area_calculator::Rectangle};
 
 fn main() {
-    println!("Would you like to convert Fahrenheit or Celius?");
-    println!("Type F for Fahrenheit or C for Celius: ");
+    println!("What function would you like to test?");
+    println!("Type 'DEGREE' for a Fahrenheit/Celcius Converter");
+    println!("Type 'FIB' for a Fibonacci Number Finder");
 
-    let mut degree_type = String::new();
+    let mut user_input = String::new();
 
     io::stdin()
-        .read_line(&mut degree_type)
-        .expect("Failed to read");
+        .read_line(&mut user_input)
+        .expect("Failed to Read Line");
 
-    println!("Please input the current degree");
-
-    let mut degree = String::new();
-
-    io::stdin().read_line(&mut degree).expect("Failed to read");
-
-    let degree: f32 = degree.trim().parse().expect("Please type a number!");
-    let new_degree: f32 = calculate_degree(degree_type, degree);
-
-    println!("The new degree is {}", new_degree);
-}
-
-fn calculate_degree(degree_type: String, degree: f32) -> f32 {
-    let fstring: String = String::from("F");
-    if degree_type.trim().eq(&fstring) {
-        return (degree - 32.0) * 0.5556;
-    } else  {
-        return (degree / 0.5556) + 32.0;
+    if user_input.trim().eq("DEGREE") {
+        degree_converter::degree_converter();
+    } else if user_input.trim().eq("FIB") {
+        fibonacci::fibonacci_number();
+    } else {
+        println!("Did not recognize that function! {}", Rectangle{width:30, height:50}.area());
     }
 }
