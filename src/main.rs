@@ -1,14 +1,18 @@
-mod rectangle_area_calculator;
-mod fibonacci;
 mod degree_converter;
+mod fibonacci;
+mod rectangle_area_calculator;
 
+use crate::rectangle_area_calculator::Rectangle;
 use std::io;
-use crate::{rectangle_area_calculator::Rectangle};
 
 fn main() {
     println!("What function would you like to test?");
-    println!("Type 'DEGREE' for a Fahrenheit/Celcius Converter");
-    println!("Type 'FIB' for a Fibonacci Number Finder");
+    println!("Type 0 for a Fahrenheit/Celcius Converter");
+    println!("Type 1 for a Fibonacci Number Finder");
+    let vector = vec[
+        degree_converter::degree_converter,
+        fibonacci::fibonacci_number,
+    ];
 
     let mut user_input = String::new();
 
@@ -16,11 +20,12 @@ fn main() {
         .read_line(&mut user_input)
         .expect("Failed to Read Line");
 
-    if user_input.trim().eq("DEGREE") {
-        degree_converter::degree_converter();
-    } else if user_input.trim().eq("FIB") {
-        fibonacci::fibonacci_number();
-    } else {
-        println!("Did not recognize that function! {}", Rectangle{width:30, height:50}.area());
-    }
+    let input_number: usize = user_input.trim().parse().expect("Please Enter a Number!");
+
+    match vector.get(input_number) {
+        Some(funct) => funct(),
+        None => println!("Sorry that's out of my capabilities"),
+    };
 }
+
+// println!("Did not recognize that function! {}", Rectangle{width:30, height:50}.area());
