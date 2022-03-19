@@ -7,12 +7,15 @@ fn main() {
     println!("Type 1 for a Fibonacci Number Finder");
     println!("Type 2 for a Rectangle Area Calculator");
     println!("Type 3 for finding the average");
+    println!("Type 4 for a Pig Latin Interpreter");
 
     let mut vector: Vec<fn()> = Vec::new();
         vector.push(helpers::degree_converter::degree_converter as fn());
         vector.push(helpers::fibonacci::fibonacci_number as fn());
         vector.push(helpers::rectangle_area_calculator::area_calculator as fn());
         vector.push(helpers::average_finder::average_calculator as fn());
+        vector.push(helpers::pig_latin_interpreter::interpret as fn());
+        // Pig latin string converter
 
     let mut user_input = String::new();
 
